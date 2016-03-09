@@ -30,8 +30,7 @@ public class Cuenta {
 	
 	protected boolean setSaldo(int saldo) throws NumerosRojosException { 
 		if(saldo<0){
-			System.out.println("Error, no se puede poner saldo negativo. ");
-			return false;
+			throw new NumerosRojosException("Error, la cuenta no puede tener saldo negativo.");
 		}
 		else{
 			this.saldo=saldo;

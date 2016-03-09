@@ -176,13 +176,17 @@ public class TestCuenta {
 	 */
 	
 	private static void reintegro(Banco banco) throws NumerosRojosException {
-		int num;
-		num = Teclado.leerEntero("Introduce número de cuenta: ");
-		if (!banco.buscarCuenta(num)) {
-			System.out.println("\nNo exite cuenta. \n");
-		} else {
-			banco.reintegrar(num, Teclado.leerEntero("Introduce una cantidad: "));
-		}
+		try{
+			int num;
+			num = Teclado.leerEntero("Introduce número de cuenta: ");
+			if (!banco.buscarCuenta(num)) {
+				System.out.println("\nNo exite cuenta. \n");
+			} else {
+				banco.reintegrar(num, Teclado.leerEntero("Introduce una cantidad: "));
+			}
+		}catch(NumerosRojosException e){
+			System.out.println(e.getMessage());
+		}		
 	}
 
 	/**
@@ -193,13 +197,17 @@ public class TestCuenta {
 	 */
 	
 	private static void ingreso(Banco banco) throws NumerosRojosException {
-		int num;
-		num = Teclado.leerEntero("Introduce número de cuenta: ");
-		if (!banco.buscarCuenta(num)) {
-			System.out.println("\nNo exite cuenta. \n");
-		} else {
-			banco.ingresar(num, Teclado.leerEntero("Introduce una cantidad: "));
-		}
+		try{
+			int num;
+			num = Teclado.leerEntero("Introduce número de cuenta: ");
+			if (!banco.buscarCuenta(num)) {
+				System.out.println("\nNo exite cuenta. \n");
+			} else {
+				banco.ingresar(num, Teclado.leerEntero("Introduce una cantidad: "));
+			}
+		}catch(NumerosRojosException e){
+			System.out.println(e.getMessage());
+		}	
 	}
 
 	/**
@@ -210,19 +218,23 @@ public class TestCuenta {
 	 */
 	
 	private static void tranferir(Banco banco) throws NumerosRojosException{
-		int num = Teclado.leerEntero("Introduce número de cuenta origen: ");
+		try{
+			int num = Teclado.leerEntero("Introduce número de cuenta origen: ");
 
-		if (!banco.buscarCuenta(num)) {
-			System.out.println("\nNo exite cuenta. \n");
-			return;
-		}
-		int num2 = Teclado.leerEntero("Introduce número de cuenta destino: ");
+			if (!banco.buscarCuenta(num)) {
+				System.out.println("\nNo exite cuenta. \n");
+				return;
+			}
+			int num2 = Teclado.leerEntero("Introduce número de cuenta destino: ");
 
-		if (!banco.buscarCuenta(num2)) {
-			System.out.println("\nNo exite cuenta. \n");
-			return;
+			if (!banco.buscarCuenta(num2)) {
+				System.out.println("\nNo exite cuenta. \n");
+				return;
+			}
+			banco.transferir(num, num2, Teclado.leerEntero("Introduce una cantidad: "));
+		}catch(NumerosRojosException e){
+			System.out.println(e.getMessage());
 		}
-		banco.transferir(num, num2, Teclado.leerEntero("Introduce una cantidad: "));
 	}
 	
 	/**
